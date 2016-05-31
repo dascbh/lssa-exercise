@@ -1,10 +1,10 @@
 #
 # Cookbook Name:: icinga
-# Recipe:: default
+# File:: default
 #
 # Copyright (c) 2016 Daniel Costa, All Rights Reserved.
 #
-# Description: Install Icinga Monitoring
+# Description: Icinga cookbook attributes file
 #
 # Version: 0.1.0
 #*********************************************************************************
