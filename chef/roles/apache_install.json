@@ -15,8 +15,8 @@
   "override_attributes": {
     "apache": {
       "httpd": {
-        // "httpd_user": "watson",
-        // "httpd_group": "apps",
+        "httpd_user": "daemon",
+        "httpd_group": "daemon",
         "install_path": "/etc/httpd",
         "conf_path": "/etc/httpd/conf",
         "httpd_install": "/var/www",

@@ -16,13 +16,13 @@
 #
 #*********************************************************************************
 
-httpd_conf = node[:apache][:httpd][:conf_path] + "/000-default.conf"
+httpd_conf = node[:apache][:httpd][:conf_path] + "/httpd.conf"
 
 #########################
 # Install httpd package.
 #########################
 
-package 'apache2' do
+package 'httpd' do
   action :install
 end
 
@@ -31,7 +31,7 @@ end
 ############################
 
 template httpd_conf do
-  source "000-default.conf.erb"
+  source "httpd.conf.erb"
   action :touch
   owner node[:apache][:httpd][:httpd_user]
   group node[:apache][:httpd][:httpd_group]
@@ -53,7 +53,7 @@ end
 # Enable httpd service.
 #########################
 
-service 'apache2' do
+service 'httpd' do
   action :enable
 end
 
@@ -61,7 +61,7 @@ end
 # Start httpd instance.
 #########################
 
-service 'apache2' do
+service 'httpd' do
 	action :start
 end
 
