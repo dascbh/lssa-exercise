@@ -1,3 +1,3 @@
 {
-  "run_list": ["role[icinga_install]"]
+  "run_list": ["role[icinga2_install]"]
 }
