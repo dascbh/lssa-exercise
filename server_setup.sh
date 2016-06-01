@@ -34,7 +34,7 @@ docker build -t mysql .
 ######################
 # Run mysql container
 ######################
-docker run --net host --name icinga-mysql-vm -e MYSQL_ROOT_PASSWORD=icinga123 -e MYSQL_USER=icinga -e MYSQL_PASSWORD=icinga123 -e MYSQL_DATABASE=icinga_db  -d mysql
+docker run --name icinga-mysql-vm -e MYSQL_ROOT_PASSWORD=icinga123 -e MYSQL_USER=icinga -e MYSQL_PASSWORD=icinga123 -e MYSQL_DATABASE=icinga_db  -d mysql
 
 ######################
 # Build apache2 image
@@ -45,7 +45,7 @@ docker build -t apache2 .
 ########################
 # Run apache2 container
 ########################
-# docker run --net host --name icinga-apache-vm -d apache2
+docker run --name icinga-apache-vm -d apache2
 
 
 ###############
@@ -58,4 +58,3 @@ curl –l https://www.opscode.com/chef/install.sh | bash
 # Install Icinga
 #################
 chef-solo -c solo.rb -j nodes/icinga.json
-

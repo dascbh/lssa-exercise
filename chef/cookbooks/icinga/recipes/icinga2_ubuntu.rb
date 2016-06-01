@@ -42,6 +42,10 @@ package 'mysql-client' do
   action :install
 end
 
+package 'mysql-server' do
+  action :install
+end
+
 package 'icinga2-ido-mysql' do
   action :install
 end

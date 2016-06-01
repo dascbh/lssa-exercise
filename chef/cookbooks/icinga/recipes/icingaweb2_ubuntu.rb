@@ -78,7 +78,7 @@ execute 'change permissions from /etc/icingaweb2' do
 end
 
 execute 'change php.ini timezone' do
-  command %[sudo sed -i "s/; date.timezone =/date.timezone = 'America\/New_York'/g" /etc/php5/apache2/php.ini]
+  command %[sed -i "s/;date.timezone =/date.timezone = 'America\\/New_York'/g" /etc/php5/apache2/php.ini]
   action :run
 end
 
@@ -86,3 +86,6 @@ service 'icinga2' do
   action :restart
 end
 
+service 'apache2' do
+  action :restart
+end
