@@ -55,6 +55,41 @@ execute 'enable ido-mysql' do
   action :run
 end
 
+template '/tmp/icingadb_setup.sql' do
+  source 'icingadb_setup.sql.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
+execute 'icinga database setup' do
+  command 'mysql -u root -p < /tmp/icingadb_setup.sql'
+  action
+end
+
+execute 'load ido-mysql schema' do
+  command 'mysql -u root -p icinga < /usr/share/icinga2-ido-mysql/schema/mysql.sql'
+  action :run
+end
+
+template '/tmp/reset_root_pass.sql' do
+  source 'reset_root_pass.sql.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
+execute 'icinga database setup' do
+  command 'mysql -u root -p < /tmp/reset_root_pass.sql'
+  action
+end
+
+execute 'remove tmp sql files' do
+  command 'rm -f /tmp/*.sql'
+  action :run
+end
+
+
 service 'icinga2' do
   action :restart
 end

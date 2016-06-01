@@ -3,7 +3,6 @@
 #################
 # Prerequisites
 #################
-# yum -y install wget httpd mod_ssl gd gd-devel mariadb-server php-mysql php-xmlrpc gcc mariadb libdbi libdbi-devel libdbi-drivers libdbi-dbd-mysql
 mkdir /logs
 mkdir /logs/mysql
 mkdir /logs/httpd
@@ -28,7 +27,7 @@ service docker start
 ####################
 # Build mysql image
 ####################
-cd ../docker/mysql
+cd docker/mysql
 docker build -t mysql .
 
 ######################
