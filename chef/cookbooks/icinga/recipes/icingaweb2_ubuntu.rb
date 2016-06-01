@@ -46,7 +46,7 @@ package 'php5-intl' do
   action :install
 end
 
-package 'php5-cli ' do
+package 'php5-cli' do
   action :install
 end
 
@@ -78,7 +78,7 @@ execute 'change permissions from /etc/icingaweb2' do
 end
 
 execute 'change php.ini timezone' do
-  command %[sed -i "s/;date.timezone ="/date.timezone = "America/New_York" /etc/php5/apache2/php.ini]
+  command %[sudo sed -i "s/; date.timezone =/date.timezone = 'America\/New_York'/g" /etc/php5/apache2/php.ini]
   action :run
 end
 
