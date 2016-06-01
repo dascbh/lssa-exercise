@@ -25,7 +25,7 @@ package 'wget' do
   action :install
 end
 
-bash 'install something' do
+bash 'install repo' do
   user 'root'
   cwd '/tmp'
   code <<-EOH
