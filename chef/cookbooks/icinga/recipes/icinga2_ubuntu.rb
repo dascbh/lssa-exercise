@@ -63,26 +63,26 @@ template '/tmp/icingadb_setup.sql' do
 end
 
 execute 'icinga database setup' do
-  command 'mysql -u root -p < /tmp/icingadb_setup.sql'
+  command 'mysql -u root < /tmp/icingadb_setup.sql'
   action
 end
 
 execute 'load ido-mysql schema' do
-  command 'mysql -u root -p icinga < /usr/share/icinga2-ido-mysql/schema/mysql.sql'
+  command 'mysql -u root icinga < /usr/share/icinga2-ido-mysql/schema/mysql.sql'
   action :run
 end
 
-template '/tmp/reset_root_pass.sql' do
-  source 'reset_root_pass.sql.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-end
+# template '/tmp/reset_root_pass.sql' do
+#   source 'reset_root_pass.sql.erb'
+#   owner 'root'
+#   group 'root'
+#   mode '0644'
+# end
 
-execute 'icinga database setup' do
-  command 'mysql -u root -p < /tmp/reset_root_pass.sql'
-  action
-end
+# execute 'icinga database setup' do
+#   command 'mysql -u root -p < /tmp/reset_root_pass.sql'
+#   action
+# end
 
 execute 'remove tmp sql files' do
   command 'rm -f /tmp/*.sql'
