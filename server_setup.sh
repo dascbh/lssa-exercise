@@ -57,3 +57,12 @@ curl –l https://www.opscode.com/chef/install.sh | bash
 # Install Icinga
 #################
 chef-solo -c solo.rb -j nodes/icinga.json
+
+
+####################
+# Print icinga token
+####################
+echo "Icinga2 Wizard Setup URL"
+echo "http://<server address>/icingaweb2/"
+
+icingacli setup token show

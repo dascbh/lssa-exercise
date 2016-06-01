@@ -71,11 +71,6 @@ execute 'icingacli token gen' do
   action :run
 end
 
-# execute 'icingacli token show' do
-#   command 'icingacli setup token show'
-#   action :run
-# end
-
 execute 'change permissions from /etc/icingaweb2' do
   command 'chmod 0777 /etc/icingaweb2 -R'
   action :run

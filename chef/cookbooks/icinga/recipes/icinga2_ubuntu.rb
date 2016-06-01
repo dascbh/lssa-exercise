@@ -72,18 +72,6 @@ execute 'load ido-mysql schema' do
   action :run
 end
 
-# template '/tmp/reset_root_pass.sql' do
-#   source 'reset_root_pass.sql.erb'
-#   owner 'root'
-#   group 'root'
-#   mode '0644'
-# end
-
-# execute 'icinga database setup' do
-#   command 'mysql -u root -p < /tmp/reset_root_pass.sql'
-#   action
-# end
-
 execute 'remove tmp sql files' do
   command 'rm -f /tmp/*.sql'
   action :run
