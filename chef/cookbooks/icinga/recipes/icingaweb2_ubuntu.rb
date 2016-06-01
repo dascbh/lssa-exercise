@@ -21,7 +21,7 @@ bash 'setup icingaweb2 repo' do
   cwd '/tmp'
   code <<-EOH
 		wget -O - http://packages.icinga.org/icinga.key | apt-key add -
-		echo 'deb http://packages.icinga.org/ubuntu icinga-trusty main' > /etc/apt/sources.list.d/icinga2.list
+		echo 'deb http://packages.icinga.org/ubuntu icinga-trusty main' >> /etc/apt/sources.list.d/icinga2.list
 		apt-get update
   EOH
 end
@@ -42,7 +42,7 @@ package 'php5-pgsql' do
   action :install
 end
 
-package 'php5-intl ' do
+package 'php5-intl' do
   action :install
 end
 
@@ -67,8 +67,18 @@ execute 'icingacli token gen' do
   action :run
 end
 
-execute 'icingacli token show' do
-  command 'icingacli setup token show'
+# execute 'icingacli token show' do
+#   command 'icingacli setup token show'
+#   action :run
+# end
+
+execute 'change permissions from /etc/icingaweb2' do
+  command 'chmod 0777 /etc/icingaweb2 -R'
+  action :run
+end
+
+execute 'change php.ini timezone' do
+  command %[sed -i "s/;date.timezone ="/date.timezone = "America/New_York" /etc/php5/apache2/php.ini]
   action :run
 end
 

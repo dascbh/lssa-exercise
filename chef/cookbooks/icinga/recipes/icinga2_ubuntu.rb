@@ -63,8 +63,3 @@ end
 service 'icinga2' do
   action :restart
 end
-
-
-
-
-

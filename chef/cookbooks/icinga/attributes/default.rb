@@ -16,4 +16,4 @@
 #
 #*********************************************************************************
 
-default[:icinga][:install_path] = "/etc/apache2"
+default[:icinga][:install_path] = "/etc/apache2
