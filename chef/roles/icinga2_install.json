@@ -8,7 +8,7 @@
   "chef_type": "role",
   "run_list": [
     "recipe[icinga::icinga2_ubuntu]",
-    // "recipe[icinga::icingaweb2_ubuntu]"
+    "recipe[icinga::icingaweb2_ubuntu]"
   ],
   "env_run_lists": {
 
