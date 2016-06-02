@@ -50,11 +50,6 @@ package 'icinga2-ido-mysql' do
   action :install
 end
 
-execute 'enable ido-mysql' do
-  command 'icinga2 feature enable ido-mysql'
-  action :run
-end
-
 template '/tmp/icingadb_setup.sql' do
   source 'icingadb_setup.sql.erb'
   owner 'root'
@@ -89,9 +84,10 @@ execute 'remove tmp sql files' do
   action :run
 end
 
-# service 'icinga2' do
-#   action :restart
-# end
+execute 'enable ido-mysql' do
+  command 'icinga2 feature enable ido-mysql'
+  action :run
+end
 
 execute 'enable icinga2 command' do
   command 'icinga2 feature enable command'
