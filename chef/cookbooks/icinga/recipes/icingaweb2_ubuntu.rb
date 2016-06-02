@@ -34,10 +34,6 @@ package 'php5-cli' do
   action :install
 end
 
-package 'php5-pear' do
-  action :install
-end
-
 package 'php5-xmlrpc' do
   action :install
 end
@@ -98,10 +94,10 @@ execute 'change permissions from /etc/icingaweb2' do
 end
 
 
-# service 'icinga2' do
-#   action :restart
-# end
+service 'icinga2' do
+  action :restart
+end
 
-# service 'apache2' do
-#   action :restart
-# end
+service 'apache2' do
+  action :restart
+end
