@@ -1,6 +1,6 @@
 {
   "name": "icinga_install",
-  "description": "Install Icinga Monitoring",
+  "description": "Install/Configure Icinga2 Monitoring and Web console",
   "json_class": "Chef::Role",
   "default_attributes": {
 

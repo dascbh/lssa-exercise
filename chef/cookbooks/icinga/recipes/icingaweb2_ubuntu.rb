@@ -16,6 +16,10 @@
 #
 #*********************************************************************************
 
+###########################
+# Install required packages
+############################
+
 bash 'setup icingaweb2 repo' do
   user 'root'
   cwd '/tmp'
@@ -26,77 +30,42 @@ bash 'setup icingaweb2 repo' do
   EOH
 end
 
-package 'php5' do
-  action :install
+node[:icinga_web2][:base_pkgs].each do |pkg|
+	package pkg do
+	  action :install
+	end
 end
 
-package 'php5-cli' do
-  action :install
-end
-
-package 'php5-xmlrpc' do
-  action :install
-end
-
-package 'php5-json' do
-  action :install
-end
-
-package 'php5-xmlrpc' do
-  action :install
-end
-
-package 'php5-gd' do
-  action :install
-end
-
-package 'php5-ldap' do
-  action :install
-end
-
-package 'php5-imagick' do
-  action :install
-end
-
-package 'php5-pgsql' do
-  action :install
-end
-
-package 'php5-intl' do
-  action :install
-end
-
-package 'php5-common' do
-  action :install
-end
-
-package 'php5-mysql' do
-  action :install
-end
-
-package 'icingaweb2' do
-  action :install
-end
-
-package 'nagios-plugins' do
-  action :install
-end
+#########################
+# Update server timezone
+#########################
 
 execute 'change php.ini timezone' do
   command %[sed -i "s/;date.timezone =/date.timezone = 'America\\/New_York'/g" /etc/php5/apache2/php.ini]
   action :run
 end
 
+###########################
+# Generate web app token
+############################
+
 execute 'icingacli token gen' do
   command 'icingacli setup token create'
   action :run
 end
+
+#######################################
+# Change icingaweb2 folder permissions
+########################################
 
 execute 'change permissions from /etc/icingaweb2' do
   command 'chmod 0777 /etc/icingaweb2 -R'
   action :run
 end
 
+######################
+# Restart services
+######################
 
 service 'icinga2' do
   action :restart
@@ -105,3 +74,5 @@ end
 service 'apache2' do
   action :restart
 end
+
+log 'Icinga Web2 succesfully installed.'

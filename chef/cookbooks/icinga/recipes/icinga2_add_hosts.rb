@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2016 Daniel Costa, All Rights Reserved.
 #
-# Description: Add hosts to icinga2 monitoring
+# Description: Add hosts for icinga2 monitoring
 #
 # Version: 0.1.0
 #*********************************************************************************
@@ -15,6 +15,10 @@
 # dasc			05/30/16	Creation
 #
 #*********************************************************************************
+
+####################################
+# Include hosts (docker containers)
+####################################
 
 template '/etc/icinga2/conf.d/hosts.conf' do
   source 'hosts.conf.erb'
