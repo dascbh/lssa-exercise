@@ -9,7 +9,7 @@
   "run_list": [
     "recipe[icinga::icinga2_ubuntu]",
     "recipe[icinga::icingaweb2_ubuntu]",
-    "recipe[icinga::icingaweb2_add_hosts]",
+    "recipe[icinga::icinga2_add_hosts]"
   ],
   "env_run_lists": {
 

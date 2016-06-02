@@ -1,13 +1,6 @@
 #!/bin/bash
 
 #################
-# Prerequisites
-#################
-mkdir /logs
-mkdir /logs/mysql
-mkdir /logs/httpd
-
-#################
 # Install Docker
 #################
 
@@ -46,6 +39,23 @@ docker build -t apache2 .
 ########################
 docker run --name icinga-apache-vm -d apache2
 
+
+#####################
+# Setup log collector
+#####################
+
+mkdir /logs
+mkdir /logs/mysql
+mkdir /logs/httpd
+
+apt-get install python-pip
+
+pip install awscli --ignore-installed six
+
+echo "aws_access_key_id = AKIAJHH4MD436X35JZYQ" >> /root/.aws/credentials
+echo "aws_secret_access_key = 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" >> /root/.aws/credentials
+
+# 00 07 * * * /usr/bin/somedirectory/somecommand
 
 ###############
 # Install CHEF
