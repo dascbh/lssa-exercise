@@ -16,13 +16,6 @@
 #
 #*********************************************************************************
 
-directory '/logs' do
-  owner 'root'
-  group 'root'
-  mode '0755'
-  action :create
-end
-
 package 'python-pip' do
   action :install
 end

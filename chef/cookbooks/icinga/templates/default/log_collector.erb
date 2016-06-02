@@ -1,4 +1,6 @@
 #!/bin/bash
 
-aws s3 sync /var/log/mysql/ s3://danielabraao-01/logs/mysql/
-aws s3 sync /var/log/apache2/ s3://danielabraao-01/logs/apache2/
+docker logs icinga-mysql-vm > /logs/mysql/docker.icinga-mysql-vm.log
+aws s3 sync /logs/mysql/ s3://danielabraao-01/logs/mysql/
+docker logs icinga-apache-vm > /logs/apache2/docker.icinga-apache-vm.log
+aws s3 sync /logs/apache2/ s3://danielabraao-01/logs/apache2/

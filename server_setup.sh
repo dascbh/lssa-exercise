@@ -1,59 +1,45 @@
 #!/bin/bash
 
+################
+# Prerequisites
+################
+mkdir /logs
+mkdir /logs/mysql
+mkdir /logs/apache2
+
 #################
 # Install Docker
 #################
 
 # add docker repo
-# apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-# echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" > /etc/apt/sources.list.d/docker.list
-
-# update repo
-# apt-get update -y
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" > /etc/apt/sources.list.d/docker.list
 
 # install docker
-# apt-get install docker-engine -y
-
-# start service
-# service docker start
+apt-get update -y
+apt-get install docker-engine -y
 
 ####################
 # Build mysql image
 ####################
-# cd docker/mysql
-# docker build -t mysql .
+cd docker/mysql
+docker build -t mysql .
 
 ######################
 # Run mysql container
 ######################
-# docker run --name icinga-mysql-vm -e MYSQL_ROOT_PASSWORD=icinga123 -e MYSQL_USER=icinga -e MYSQL_PASSWORD=icinga123 -e MYSQL_DATABASE=icinga_db  -d mysql
+docker run --name icinga-mysql-vm -e MYSQL_ROOT_PASSWORD=icinga123 -e MYSQL_USER=icinga -e MYSQL_PASSWORD=icinga123 -e MYSQL_DATABASE=icinga_db  -v /logs:/var/logs -d mysql
 
 ######################
 # Build apache2 image
 ######################
-# cd ../apache2
-# docker build -t apache2 .
+cd ../apache2
+docker build -t apache2 .
 
 ########################
 # Run apache2 container
 ########################
-# docker run --name icinga-apache-vm -d apache2
-
-
-#####################
-# Setup log collector
-#####################
-
-# mkdir /logs
-
-# apt-get install python-pip -y
-
-# pip install awscli --ignore-installed six
-
-# mkdir /root/.aws
-# echo "[default]" > /root/.aws/credentials
-# echo "aws_access_key_id = AKIAJHH4MD436X35JZYQ" >> /root/.aws/credentials
-# echo "aws_secret_access_key = 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" >> /root/.aws/credentials
+docker run --name icinga-apache-vm -v /logs/:/var/log -d apache2
 
 ###############
 # Install CHEF
