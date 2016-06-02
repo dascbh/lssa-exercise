@@ -1,10 +1,10 @@
 #
 # Cookbook Name:: icinga
-# Recipe:: default
+# Recipe:: icinga2
 #
 # Copyright (c) 2016 Daniel Costa, All Rights Reserved.
 #
-# Description: Install Icinga Monitoring
+# Description: Install Icinga2 Monitoring
 #
 # Version: 0.1.0
 #*********************************************************************************
@@ -87,6 +87,13 @@ end
 execute 'enable ido-mysql' do
   command 'icinga2 feature enable ido-mysql'
   action :run
+end
+
+template '/etc/icinga2/features-enabled/ido-mysql.conf' do
+  source 'ido-mysql.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0755'
 end
 
 execute 'enable icinga2 command' do

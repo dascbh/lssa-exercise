@@ -1,10 +1,10 @@
 #
 # Cookbook Name:: icinga
-# Recipe:: default
+# Recipe:: icingaweb2
 #
 # Copyright (c) 2016 Daniel Costa, All Rights Reserved.
 #
-# Description: Install Icinga Monitoring
+# Description: Install Icinga Web 2 module
 #
 # Version: 0.1.0
 #*********************************************************************************
@@ -75,6 +75,10 @@ package 'php5-mysql' do
 end
 
 package 'icingaweb2' do
+  action :install
+end
+
+package 'nagios-plugins' do
   action :install
 end
 

@@ -58,7 +58,6 @@ curl –l https://www.opscode.com/chef/install.sh | bash
 #################
 chef-solo -c solo.rb -j nodes/icinga.json
 
-
 ####################
 # Print icinga token
 ####################
